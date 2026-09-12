@@ -62,45 +62,93 @@
 # A P P L 
 # A P P L E
 
-string1 = 'APPLE'
+# string1 = 'APPLE'
 # for i in range(len(string1)):
 #     for j in range(i+1):        
 #         print(string1[j],end = '')    
 #     print()
 
 # with one for loop
-for i in range(len(string1)):
-    print(string1[0:i+1])
+# for i in range(len(string1)):
+#     print(string1[0:i+1])
 
-************************
-submit monday
+# ************************
+# submit monday
 
 # *****
 # *   *
 # *   *
+# *   *
+# *****
+
+# n = int(input('enter a number: '))
+# for i in range(1,n+1):
+#     for j in range(1,n+1):
+#         if j == 1 or j == n or i == 1 or i == n:
+#             print('*', end ='')
+#         else:
+#             print(' ',end = '')
+#     print()
 
 
 
 
-     *
-    **
-    ***
+
+
+    #     *
+    #    ***
+    #   *****
+    #  *******
+    # ********* 
+
+
+# n = int(input("enter a numbet"))
+# for i in range(n,0,-1):
+#     for j in range(i-1,-1,-1):
+#         for k in range(1,n*,2):
+#             if 
 
 
 
-******************************************
+# n = int(input("enter a numbet"))
+# for i in range(1,n+1):
+#     for j in range(n-i,0,-1):
+#         print(" ",end = '')
+#     for k in range(1,i * 2):
+#         print("*",end = '')
+#     print()
 
-WBWBWB
-BWBWBW
-WBWBWB
-BWBWBW
+# n = int(input("enter a numbet"))
+# for i in range(1,n+1):
+#     for j in range(n-i,0,-1):
+#         print(" ",end = '')
+#     for k in range(1,i * 2):
+#         print("*",end = '')
+#     print()
+
+n = int(input("enter a number"))
+for i in range(1,n+1):
+    for j in range(n-i):
+        print(" ",end = '')
+    for k in range(1,i * 2):
+        print(j,end = '')
+    print()
 
 
-1010101
-0101010
-1010101
-0101010
-1010101
+
+# ******************************************
+
+# WBWBWB
+# BWBWBW
+# WBWBWB
+# BWBWBW
 
 
-*#*
+# 1010101
+# 0101010
+# 1010101
+# 0101010
+# 1010101
+
+
+
