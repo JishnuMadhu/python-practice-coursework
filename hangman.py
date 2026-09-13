@@ -30,22 +30,21 @@ malayalam_movies = [
     "Run Baby Run", "Jacobinte Swargarajyam"
 ]
 
-movie = random.choice(malayalam_movies)
+movie = random.choice(malayalam_movies) #genetate random movie
 movie = movie.lower()
 
 
-# char_chance = 6
-# movie_chance = 2
-guessed_letters = []
+char_chance = 6
+movie_chance = 2
 movie_as_list = list(movie)
+guessed_letters = []
 
 
 print(movie_as_list)
-print()
 
-for i in movie_as_list:
+for i in movie_as_list:  #print '_'s 
     if i == ' ':
-        print(' ',end = " ")
+        print('  ',end = " ")
     else:
         print('_',end=' ')
 print()
@@ -53,36 +52,60 @@ print()
 
 
 def guess_char(c):
-    if c.lower() in movie_as_list:
         guessed_letters.append(c)
+
         for letter in movie_as_list:
             if letter in guessed_letters:
                 print(letter,end='')
             elif letter == ' ':
-                    print(' ',end='')
+                    print('  ',end='')
             else:
                     print('_',end=' ')
-
-
-
+        print()
         
-char_guess = input('ente your character:-')
-guess_char(char_guess)
+def check_win():
+    for letter in movie_as_list:
+        if letter == ' ':
+            continue
+        if letter not in guessed_letters:
+            return False
+    return True
 
 
-# # def guess(movie_guess):
-# #     if movie_guess.lower() == movie.lower():
-# #         print('Congragulation!!!! You Won')
-# #     else:
-# #         movie_chance = movie_chance - 1
-# #         print(f'Wrong guess, you have {movie_chance} chances left')
-
-
-
-# # movie_guess = input('enter the movie name:-')
-# # guess(movie_guess)
-
+while True:
+    ch = int(input('1. Guess a lettern\n2. Guess the movie:-'))
     
+    #to guess letters
+    
+    if ch == 1 and char_chance >0:
+        char_guess = input('enter your character:-')
+        if char_guess.lower() in movie_as_list:
+            guess_char(char_guess.lower())
+            if check_win():
+                print(f'🎉 Congratulations!!!!!! You Won!\nThe movie was: {movie}')
+                break
+
+        else:
+            char_chance = char_chance-1
+            print(f'❌ Wrong letter!\nLetter chances left: {char_chance}\n')
+
+    #to guess the movie
+    
+    elif ch == 2 and movie_chance >0:
+         movie_guess = input('enter the movie name:-')
+
+         if movie_guess.lower() == movie.lower():
+              print(f'🎉 Congratulations!!!!!! You Won!\nThe movie was: {movie}')
+              break
+         else:
+              movie_chance = movie_chance -1
+              print(f'❌ Wrong movie!\nMovie chances left: {movie_chance}\n')
+    elif ch not in [1,2]:
+         print('invalid choice!!! Please enter correct choice!!!')
+
+    if char_chance ==0 and movie_chance ==0:
+         print(f'GAME OVER\nThe movie was {movie}')
+         break
 
 
     
