@@ -57,8 +57,22 @@ class Player:
 
         self.critical_chance = self.stats["critical_chance"]
         self.critical_damage = 2
+    def display_stats(self):
+        print('========================')
+        print('     PLAYER STATS     ')
+        print('========================')
 
+        
+        print(f'Name       : {self.name}')
+        print(f'Class      : {self.player_class}')
+        print(f'Level      : {self.level}')
+        print(f'Experience : {self.experience}')
+        print(f'HP         : {self.hp} / {self.max_hp}')
+        print(f'Mana       : {self.mana} / {self.max_mana}')
 
-    
+        print(f'Attack     : {self.attack}')
+        print(f'Defense    : {self.defense}')
+        print(f'Crit Chance: {self.critical_chance}%')
+        print(f'Gold       : {self.gold}')
 
     

@@ -1,26 +1,43 @@
 
 from player import Player
 
-while True:
-    name = input('enter name:-')
-    ch = input(f'Choose your class\n1. Warrior\n2. Mage\n3. Archer\n4. Assassin')
-    if ch == 1:
-        player_class = 'Warrior'
-    elif ch == 2:
-        player_class = 'Mage'
-    elif ch == 3:
-        player_class = 'Archer'
-    elif ch == 4:
-        player_class = 'Assassin'
-    else:
-        print("Invalid choice!!!")
+
+def create_player():
+    classes = {
+        1: "Warrior",
+        2: "Mage",
+        3: "Archer",
+        4: "Assassin"
+    }
+    while True:
+        name = input("Enter name:-")
+
+        if name.strip():
+            break
+
+        print("Name cannot be empty!")
+
+    while True:
+        try:
+            ch = int(input(f'Choose your class\n1. Warrior\n2. Mage\n3. Archer\n4. Assassin:-'))
+
+            if ch in classes:
+                player_class = classes[ch]
+                break
+            else:
+                print('Invalid choice')
+
+        except ValueError:
+            print('Plese enter a number!!!')
+    
 
     player = Player(name,player_class)
-    print(player.name)
-    print(player.player_class)
-    print(player.hp)
-    print(player.max_hp)
-    print(player.mana)
-    print(player.attack)
-    print(player.defense)
-    print(player.critical_chance)
+    print('Character created!!!')
+
+    return player
+
+while True:
+
+    player = create_player()
+    player.display_stats()
+    
