@@ -74,5 +74,23 @@ class Player:
         print(f'Defense    : {self.defense}')
         print(f'Crit Chance: {self.critical_chance}%')
         print(f'Gold       : {self.gold}')
-
     
+def check_level_up(self):
+    while self.experience >= self.level * 100: # check if player has enough experience to level up
+
+            required_xp = self.level * 100  #calculate required experience for next level
+
+            self.experience -= required_xp
+            self.level += 1
+
+            self.max_hp += 10
+            self.max_mana += 10
+            self.attack += 5
+            self.defense += 5
+            self.critical_chance += 2
+
+            self.hp = self.max_hp  #resets hp to max hp after level up
+            self.mana = self.max_mana  #resets mana to max mana after level up
+
+            print(f'You leveled up to {self.level}!')
+            print('Your HP and Mana have been fully restored!')

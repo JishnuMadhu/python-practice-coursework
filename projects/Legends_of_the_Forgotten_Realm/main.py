@@ -32,7 +32,7 @@ def create_player():
     
 
     player = Player(name,player_class)
-    print('Character created!!!')
+    print('===== PLAYER CREATED =====')
 
     return player
 

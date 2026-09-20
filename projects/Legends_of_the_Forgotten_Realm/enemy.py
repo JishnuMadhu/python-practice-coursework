@@ -3,7 +3,7 @@ import random
 
 ENEMY_DATA = {
 
-    #  LEVEL 1–10
+    #  Level 1–10
     "Goblin": {
         "hp": 40,
         "attack": 10,
@@ -45,7 +45,7 @@ ENEMY_DATA = {
     },
 
 
-    # LEVEL 11–20
+    # Level 11–20
 
     "Orc": {
         "hp": 90,
@@ -88,7 +88,7 @@ ENEMY_DATA = {
     },
 
 
-    # LEVEL 21–30 
+    # Level 21–30 
 
     "Vampire": {
         "hp": 150,
@@ -159,16 +159,16 @@ ENEMY_RANGES = {
 
 
 def get_random_enemy(player_level):
+
     for level_range,enemies in ENEMY_RANGES.items():
-        min_level,max_level = level_range
+        min_level,max_level = level_range  #level_range tuple is unpacked to min and max level variables
+
         if min_level <= player_level <= max_level:
             enemy_name = random.choice(enemies)
-            return enemy_name
-            # return Enemy(enemy_name,player_level)
+            return Enemy(enemy_name,player_level)
 
 
-#test 
-print(get_random_enemy(9))
+
 class Enemy:
 
     def __init__(self, name, level):
@@ -210,3 +210,5 @@ class Enemy:
 # print(ENEMY_RANGES[(21,30)])
 
 
+#test 
+# print(get_random_enemy(9))
