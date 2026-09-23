@@ -1,6 +1,8 @@
 
+from enemy import get_random_enemy
 from player import Player
-
+from combat import battle
+from weapons import Weapon
 
 def create_player():
     classes = {
@@ -36,8 +38,22 @@ def create_player():
 
     return player
 
-while True:
 
-    player = create_player()
-    player.display_stats()
-    
+
+
+player = Player("jishnu", "Warrior")
+
+weapon = Weapon("Rusty Sword")
+player.equip_weapon(weapon)
+
+enemy = get_random_enemy(player.level)
+
+battle(player, enemy)
+        # player = Player('jishnu', "Warrior")
+        # player.level = 2
+        # player.defense = 5
+        # player.critical_chance = 100
+
+        # enemy = get_random_enemy(player.level)
+        # battle(player, enemy)
+        # player.display_stats()
