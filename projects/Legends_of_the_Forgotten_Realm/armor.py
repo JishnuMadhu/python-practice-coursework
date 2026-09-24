@@ -103,6 +103,4 @@ class Armor:
         self.mana_bonus = rarity_data["mana_bonus"]
         self.crit_resistance = rarity_data["crit_resistance"]
 
-        self.defense = int(
-            self.base_defense * self.defense_multiplier
-        )
+        self.defense = int(self.base_defense * self.defense_multiplier)

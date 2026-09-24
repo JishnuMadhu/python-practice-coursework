@@ -64,6 +64,10 @@ class Player:
 
         self.critical_damage = 2
 
+        self.armor = None
+
+        self.critical_resistance = 0
+
     def display_stats(self):
         print('========================')
         print('     PLAYER STATS     ')
@@ -102,13 +106,26 @@ class Player:
                 print(f'You leveled up to {self.level}!')
                 print('Your HP and Mana have been fully restored!')
     
-    def equip_weapon(self,weapon):
+    def equip_weapon(self, weapon):
         self.weapon = weapon
         self.critical_chance = self.base_critical_chance + weapon.crit_bonus
-        print(f'Equipped {weapon.weapon_name}!')
+        print(f'Equipped {weapon.weapon_name}!')   
+
+    def equip_armor(self, armor):
+        self.armor = armor
+
+        self.defense += armor.defense
+        self.max_hp += armor.hp_bonus
+        self.max_mana += armor.mana_bonus
+        self.critical_resistance += armor.crit_resistance
+
+        self.hp = self.max_hp
+        self.mana = self.max_mana
+
+        print(f'Equipped {armor.armor_name}!')
 
 # test
-# player = Player("Jishnu", "Warrior")
+player = Player("Jishnu", "Warrior")
 # weapon = Weapon("Rusty Sword")
 # player.equip_weapon(weapon)
 # print(player.weapon.weapon_name)

@@ -1,8 +1,7 @@
 from player import Player
 from enemy import get_random_enemy
 from combat import battle
-
-
+from armor import Armor
 # # ==============================
 # # TEST 1: CREATE PLAYER
 # # ==============================
@@ -46,13 +45,36 @@ from combat import battle
 
 # player.display_stats()
 
+# from armor import Armor
+
+# armor = Armor("Steel Armor")
+
+# print(armor.armor_name)
+# print(armor.rarity)
+# print(armor.defense)
+# print(armor.hp_bonus)
+# print(armor.mana_bonus)
+# print(armor.crit_resistance)
+
+# from armor import Armor
+
+# armor = Armor("Steel Armor")
+
+# print(armor.armor_name)
+# print(armor.rarity)
+# print(armor.defense)
+# print(armor.hp_bonus)
+# print(armor.mana_bonus)
+# print(armor.crit_resistance)
+
+
+from player import Player
 from armor import Armor
 
-armor = Armor("Steel Armor")
+player = Player("Jishnu", "Warrior")
 
-print(armor.armor_name)
-print(armor.rarity)
-print(armor.defense)
-print(armor.hp_bonus)
-print(armor.mana_bonus)
-print(armor.crit_resistance)
+armor = Armor("Steel Armor")
+player.equip_armor(armor)
+
+print(player.armor.armor_name)
+print(player.armor.defense)
