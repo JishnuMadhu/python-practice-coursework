@@ -95,9 +95,9 @@ def is_region_unlocked(player_or_level, region):
     prereq_boss = REGION_PREREQUISITES.get(region)
 
     if hasattr(player_or_level, "bosses_defeated"):
-        if prereq_boss is None or prereq_boss in player_or_level.bosses_defeated:
+        if prereq_boss is None:
             return True
-        return player_or_level.level >= REGIONS[region]["min_level"]
+        return prereq_boss in player_or_level.bosses_defeated
 
     return player_or_level >= REGIONS[region]["min_level"]
 

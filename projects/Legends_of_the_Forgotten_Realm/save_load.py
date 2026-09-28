@@ -38,7 +38,10 @@ def save_game(player, filename=SAVE_FILE):
         "armors": [a.armor_name for a in player.armors],
         "potions": [p.potion_name for p in player.potions],
         "bosses_defeated": player.bosses_defeated,
-        "enemies_defeated": player.enemies_defeated
+        "enemies_defeated": player.enemies_defeated,
+        "weapons_collected": getattr(player, "weapons_collected", len(player.weapons) + (1 if player.weapon else 0)),
+        "rare_items_found": getattr(player, "rare_items_found", 0),
+        "play_time_seconds": player.get_total_play_time_seconds() if hasattr(player, "get_total_play_time_seconds") else 0
     }
 
     try:
@@ -88,6 +91,11 @@ def load_game(filename=SAVE_FILE):
         # Progression
         player.bosses_defeated = data.get("bosses_defeated", [])
         player.enemies_defeated = data.get("enemies_defeated", 0)
+
+        # Stats tracking
+        player.weapons_collected = data.get("weapons_collected", len(player.weapons) + (1 if player.weapon else 0))
+        player.rare_items_found = data.get("rare_items_found", 0)
+        player.play_time_seconds = data.get("play_time_seconds", 0)
 
         print(f"\nWelcome back, {player.name}! Game loaded successfully.")
         return player

@@ -1,5 +1,5 @@
 import sqlite3
-from admin import view_products
+from admin import view_products, get_db
 
 
 def place_order(user):
@@ -8,9 +8,9 @@ def place_order(user):
     try:
         view_products()
 
-        product_id = int(input("Enter product id: "))
+        product_id = int(input("\nEnter product id: "))
 
-        conn = sqlite3.connect("shopping.db")
+        conn = get_db()
         cursor = conn.cursor()
 
         # Check whether product exists
@@ -78,7 +78,7 @@ def place_order(user):
 def view_my_orders(user):
     print("\n--- My Orders ---")
 
-    conn = sqlite3.connect("shopping.db")
+    conn = get_db()
     cursor = conn.cursor()
 
     cursor.execute('''

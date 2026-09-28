@@ -143,6 +143,7 @@ while want_to_play:
         want_to_play = True
     else:
         want_to_play = False
+        print("\nThanks for playing Tic-Tac-Toe! Goodbye! 👋\n")
          
     
 

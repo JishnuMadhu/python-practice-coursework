@@ -1,10 +1,55 @@
 import sqlite3
 
 
+def get_db():
+    conn = sqlite3.connect("shopping.db")
+    conn.execute("PRAGMA foreign_keys = ON")
+    return conn
+
+
+def view_categories():
+    print("\n--- Categories ---")
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        cursor.execute("SELECT id, category_name FROM categories ORDER BY id")
+        categories = cursor.fetchall()
+        conn.close()
+
+        if categories:
+            for cat in categories:
+                print(f"ID: {cat[0]} | Name: {cat[1]}")
+        else:
+            print("No categories found.")
+    except sqlite3.Error as e:
+        print("Database error:", e)
+
+
+def add_category():
+    print("\n--- Add Category ---")
+    category_name = input("Enter category name: ").strip()
+
+    if not category_name:
+        print("Category name cannot be empty!")
+        return
+
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO categories(category_name) VALUES(?)", (category_name,))
+        conn.commit()
+        conn.close()
+        print(f"Category '{category_name}' added successfully!")
+    except sqlite3.IntegrityError:
+        print("Category already exists!")
+    except sqlite3.Error as e:
+        print("Database error:", e)
+
+
 def view_products():
     print("\n--- Products ---")
 
-    conn = sqlite3.connect("shopping.db")
+    conn = get_db()
     cursor = conn.cursor()
 
     cursor.execute('''
@@ -37,7 +82,7 @@ def add_product():
     print("\n--- Add Product ---")
 
     try:
-        product_name = input("Enter product name: ")
+        product_name = input("Enter product name: ").strip()
 
         if not product_name:
             print("Product name cannot be empty!")
@@ -45,7 +90,6 @@ def add_product():
 
         price = float(input("Enter price: "))
         stock = int(input("Enter stock: "))
-        category_id = int(input("Enter category id: "))
 
         if price < 0:
             print("Price cannot be negative!")
@@ -55,7 +99,11 @@ def add_product():
             print("Stock cannot be negative!")
             return
 
-        conn = sqlite3.connect("shopping.db")
+        # Show available categories so user doesn't have to guess
+        view_categories()
+        category_id = int(input("\nEnter category id: "))
+
+        conn = get_db()
         cursor = conn.cursor()
 
         cursor.execute('''
@@ -95,7 +143,7 @@ def update_product():
     try:
         product_id = int(input("Enter product id: "))
 
-        conn = sqlite3.connect("shopping.db")
+        conn = get_db()
         cursor = conn.cursor()
 
         cursor.execute('''
@@ -111,7 +159,7 @@ def update_product():
             conn.close()
             return
 
-        product_name = input("Enter new product name: ")
+        product_name = input("Enter new product name: ").strip()
 
         if not product_name:
             print("Product name cannot be empty!")
@@ -120,7 +168,6 @@ def update_product():
 
         price = float(input("Enter new price: "))
         stock = int(input("Enter new stock: "))
-        category_id = int(input("Enter new category id: "))
 
         if price < 0:
             print("Price cannot be negative!")
@@ -131,6 +178,10 @@ def update_product():
             print("Stock cannot be negative!")
             conn.close()
             return
+
+        # Show categories
+        view_categories()
+        category_id = int(input("\nEnter new category id: "))
 
         cursor.execute('''
                         SELECT id
@@ -173,7 +224,7 @@ def delete_product():
     try:
         product_id = int(input("Enter product id: "))
 
-        conn = sqlite3.connect("shopping.db")
+        conn = get_db()
         cursor = conn.cursor()
 
         cursor.execute('''
@@ -215,7 +266,7 @@ def delete_product():
 def view_all_orders():
     print("\n--- All Orders ---")
 
-    conn = sqlite3.connect("shopping.db")
+    conn = get_db()
     cursor = conn.cursor()
 
     cursor.execute('''
@@ -244,6 +295,65 @@ def view_all_orders():
         print("No orders available.")
 
 
+def update_order_status():
+    print("\n--- Update Order Status ---")
+
+    try:
+        view_all_orders()
+        order_id = int(input("\nEnter Order ID to update: "))
+
+        conn = get_db()
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT id, status FROM orders WHERE id = ?", (order_id,))
+        order = cursor.fetchone()
+
+        if not order:
+            print("Order not found!")
+            conn.close()
+            return
+
+        print(f"Current Status: {order[1]}")
+        print("Select new status:")
+        print("1. Processing")
+        print("2. Shipped")
+        print("3. Delivered")
+        print("4. Cancelled")
+        print("5. Custom Status")
+
+        choice = input("Enter choice (1-5): ").strip()
+        status_map = {
+            "1": "Processing",
+            "2": "Shipped",
+            "3": "Delivered",
+            "4": "Cancelled"
+        }
+
+        if choice in status_map:
+            new_status = status_map[choice]
+        elif choice == "5":
+            new_status = input("Enter custom status: ").strip()
+            if not new_status:
+                print("Status cannot be empty!")
+                conn.close()
+                return
+        else:
+            print("Invalid choice!")
+            conn.close()
+            return
+
+        cursor.execute("UPDATE orders SET status = ? WHERE id = ?", (new_status, order_id))
+        conn.commit()
+        conn.close()
+
+        print(f"Order #{order_id} status updated to '{new_status}' successfully!")
+
+    except ValueError:
+        print("Please enter a valid Order ID!")
+    except sqlite3.Error as e:
+        print("Database error:", e)
+
+
 def admin_menu():
     while True:
         print("\n--- Admin Menu ---")
@@ -251,8 +361,11 @@ def admin_menu():
         print("2. View Products")
         print("3. Update Product")
         print("4. Delete Product")
-        print("5. View All Orders")
-        print("6. Logout")
+        print("5. View Categories")
+        print("6. Add Category")
+        print("7. View All Orders")
+        print("8. Update Order Status")
+        print("9. Logout")
 
         choice = input("Enter your choice: ")
 
@@ -269,9 +382,18 @@ def admin_menu():
             delete_product()
 
         elif choice == "5":
-            view_all_orders()
+            view_categories()
 
         elif choice == "6":
+            add_category()
+
+        elif choice == "7":
+            view_all_orders()
+
+        elif choice == "8":
+            update_order_status()
+
+        elif choice == "9":
             print("Logged out successfully!")
             break
 

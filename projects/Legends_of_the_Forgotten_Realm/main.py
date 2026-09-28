@@ -51,16 +51,33 @@ def create_player():
 
 def display_victory(player):
 
-    print("\n" + "=" * 40)
-    print("               VICTORY!")
-    print("=" * 40)
+    total_secs = player.get_total_play_time_seconds() if hasattr(player, "get_total_play_time_seconds") else 0
+    mins = total_secs // 60
+    secs = total_secs % 60
+
+    score = (
+        (player.level * 100)
+        + (player.enemies_defeated * 50)
+        + (len(player.bosses_defeated) * 500)
+        + (player.gold * 2)
+        + (getattr(player, "weapons_collected", len(player.weapons)) * 75)
+        + (getattr(player, "rare_items_found", 0) * 200)
+    )
+
+    print("\n" + "=" * 45)
+    print("                 VICTORY!")
+    print("=" * 45)
     print(f"\nCongratulations, {player.name}!\n")
-    print(f"Level: {player.level}")
-    print(f"Enemies Defeated: {player.enemies_defeated}")
-    print(f"Bosses Defeated: {len(player.bosses_defeated)}")
-    print(f"Gold: {player.gold}")
+    print(f"Final Level      : {player.level}")
+    print(f"Enemies Defeated : {player.enemies_defeated}")
+    print(f"Bosses Defeated  : {len(player.bosses_defeated)}")
+    print(f"Total Gold       : {player.gold}")
+    print(f"Weapons Collected: {getattr(player, 'weapons_collected', len(player.weapons))}")
+    print(f"Rare Items Found : {getattr(player, 'rare_items_found', 0)}")
+    print(f"Total Play Time  : {mins}m {secs}s")
+    print(f"Final Score      : {score}")
     print("\nYou have conquered the Forgotten Realm!")
-    print("=" * 40)
+    print("=" * 45)
 
 
 def game_over_menu(player):
