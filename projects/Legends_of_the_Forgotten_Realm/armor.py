@@ -46,39 +46,96 @@ RARITY_DATA = {
 
 ARMOR_DATA = {
 
+    # Common
     "Leather Armor": {
         "rarity": "Common",
         "defense": 5,
         "price": 20,
         "required_level": 1
     },
+    "Cloth Robe": {
+        "rarity": "Common",
+        "defense": 4,
+        "price": 20,
+        "required_level": 1
+    },
 
+    # Uncommon
     "Iron Armor": {
         "rarity": "Uncommon",
         "defense": 10,
         "price": 50,
         "required_level": 2
     },
+    "Hunter Armor": {
+        "rarity": "Uncommon",
+        "defense": 9,
+        "price": 55,
+        "required_level": 3
+    },
 
+    # Rare
     "Steel Armor": {
         "rarity": "Rare",
         "defense": 15,
         "price": 100,
         "required_level": 5
     },
+    "Knight Armor": {
+        "rarity": "Rare",
+        "defense": 17,
+        "price": 120,
+        "required_level": 5
+    },
 
+    # Super Rare
+    "Shadow Armor": {
+        "rarity": "Super Rare",
+        "defense": 20,
+        "price": 160,
+        "required_level": 8
+    },
+    "Guardian Armor": {
+        "rarity": "Super Rare",
+        "defense": 22,
+        "price": 180,
+        "required_level": 8
+    },
+
+    # Epic
     "Flame Armor": {
         "rarity": "Epic",
         "defense": 25,
         "price": 250,
         "required_level": 10
     },
+    "Dragon Armor": {
+        "rarity": "Epic",
+        "defense": 28,
+        "price": 300,
+        "required_level": 12
+    },
 
+    # Mythical
     "Demon Armor": {
+        "rarity": "Mythical",
+        "defense": 35,
+        "price": 400,
+        "required_level": 15
+    },
+
+    # Legendary
+    "Celestial Armor": {
         "rarity": "Legendary",
         "defense": 40,
-        "price": 500,
+        "price": 550,
         "required_level": 20
+    },
+    "Ancient Armor": {
+        "rarity": "Legendary",
+        "defense": 45,
+        "price": 700,
+        "required_level": 25
     }
 }
 

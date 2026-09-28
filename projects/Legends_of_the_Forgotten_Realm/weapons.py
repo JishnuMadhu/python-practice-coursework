@@ -4,39 +4,144 @@
 
 WEAPON_DATA = {
 
+    # Common
     "Rusty Sword": {
         "rarity": "Common",
         "damage": 5,
         "price": 20,
         "required_level": 1
     },
+    "Wooden Bow": {
+        "rarity": "Common",
+        "damage": 5,
+        "price": 20,
+        "required_level": 1
+    },
+    "Apprentice Staff": {
+        "rarity": "Common",
+        "damage": 6,
+        "price": 25,
+        "required_level": 1
+    },
 
+    # Uncommon
     "Iron Sword": {
         "rarity": "Uncommon",
         "damage": 10,
         "price": 50,
         "required_level": 2
     },
+    "Hunter Bow": {
+        "rarity": "Uncommon",
+        "damage": 11,
+        "price": 55,
+        "required_level": 2
+    },
+    "Steel Dagger": {
+        "rarity": "Uncommon",
+        "damage": 10,
+        "price": 55,
+        "required_level": 3
+    },
 
+    # Rare
     "Steel Sword": {
         "rarity": "Rare",
         "damage": 15,
         "price": 100,
         "required_level": 5
     },
+    "Battle Axe": {
+        "rarity": "Rare",
+        "damage": 17,
+        "price": 120,
+        "required_level": 5
+    },
+    "Longbow": {
+        "rarity": "Rare",
+        "damage": 16,
+        "price": 110,
+        "required_level": 5
+    },
 
+    # Super Rare
+    "Knight Sword": {
+        "rarity": "Super Rare",
+        "damage": 20,
+        "price": 160,
+        "required_level": 8
+    },
+    "Shadow Dagger": {
+        "rarity": "Super Rare",
+        "damage": 21,
+        "price": 170,
+        "required_level": 8
+    },
+    "War Bow": {
+        "rarity": "Super Rare",
+        "damage": 20,
+        "price": 165,
+        "required_level": 8
+    },
+
+    # Epic
     "Flame Blade": {
         "rarity": "Epic",
         "damage": 25,
         "price": 250,
         "required_level": 10
     },
+    "Thunder Hammer": {
+        "rarity": "Epic",
+        "damage": 28,
+        "price": 280,
+        "required_level": 12
+    },
+    "Arcane Staff": {
+        "rarity": "Epic",
+        "damage": 27,
+        "price": 270,
+        "required_level": 12
+    },
 
+    # Mythical
+    "Dragon Fang": {
+        "rarity": "Mythical",
+        "damage": 32,
+        "price": 350,
+        "required_level": 15
+    },
+    "Demon Scythe": {
+        "rarity": "Mythical",
+        "damage": 35,
+        "price": 380,
+        "required_level": 15
+    },
+    "Celestial Bow": {
+        "rarity": "Mythical",
+        "damage": 34,
+        "price": 370,
+        "required_level": 18
+    },
+
+    # Legendary
     "Demon Slayer": {
         "rarity": "Legendary",
         "damage": 40,
         "price": 500,
         "required_level": 20
+    },
+    "Excalibur": {
+        "rarity": "Legendary",
+        "damage": 45,
+        "price": 650,
+        "required_level": 25
+    },
+    "Soul Reaper": {
+        "rarity": "Legendary",
+        "damage": 50,
+        "price": 750,
+        "required_level": 30
     }
 }
 
